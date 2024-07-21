@@ -1,4 +1,4 @@
-package com.example.customer_inventory_manager;
+package com.example.cim;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
