@@ -38,7 +38,7 @@ public class CustomerController {
         customerService.removeCustomerById(customerId);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{customerId}")
     public Customer updateCustomer(@RequestBody Customer customer, @PathVariable Long customerId){
         return customerService.updateCustomerDetails(customer,customerId);
     }
