@@ -28,12 +28,12 @@ public class CustomerController {
         return customerService.retrieveAllCustomers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{customerId}")
     public Customer getCustomerById(@PathVariable Long customerId){
         return customerService.retrieveCustomerById(customerId);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{customerId}")
     public void removeCustomer(@PathVariable Long customerId){
         customerService.removeCustomerById(customerId);
     }
