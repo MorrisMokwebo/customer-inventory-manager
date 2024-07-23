@@ -64,11 +64,17 @@ public class CustomerServiceImpl implements CustomerService{
 
         Optional<Customer> existingCustomer = getCustomer(customerId);
 
-        if(existingCustomer.isPresent()){
-           customerRepository.save(customer);
+        if(existingCustomer.isEmpty()){
+            throw new RuntimeException("Customer with id: "+customerId+" does not exist");
         }
 
-        throw new RuntimeException("Customer with id: "+customerId+" does not exist");
+        existingCustomer.get().setFirstName(customer.getFirstName());
+        existingCustomer.get().setLastName(customer.getLastName());
+        existingCustomer.get().setPhoneNumber(customer.getPhoneNumber());
+        existingCustomer.get().setEmail(customer.getEmail());
+
+       return customerRepository.save(existingCustomer.get());
+
     }
 
     private Optional<Customer> getCustomer(Long customerId) {
