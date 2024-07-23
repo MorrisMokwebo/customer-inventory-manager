@@ -1,7 +1,8 @@
-package com.example.cim.service;
+package com.example.cim.service.serviceImpl;
 
 import com.example.cim.model.Customer;
 import com.example.cim.repository.CustomerRepository;
+import com.example.cim.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 

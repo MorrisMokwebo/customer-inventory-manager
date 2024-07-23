@@ -1,7 +1,8 @@
-package com.example.cim.service;
+package com.example.cim.service.serviceImpl;
 
 import com.example.cim.model.Item;
 import com.example.cim.repository.ItemRepository;
+import com.example.cim.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class ItemServiceImpl implements ItemService{
+public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
 
