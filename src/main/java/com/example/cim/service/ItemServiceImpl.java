@@ -21,7 +21,7 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public Item saveItem(Item item) {
 
-        if(itemExists(item)){
+        if(itemExists(item.getItemName())){
             throw  new RuntimeException("Item with name: "+item.getItemName()+" already exists");
         }
 
@@ -33,11 +33,16 @@ public class ItemServiceImpl implements ItemService{
 
         Optional<Item> existingItem = getItem(itemId);
 
-        if(existingItem.isPresent()){
-            itemRepository.save(item);
+        if(existingItem.isEmpty()){
+            throw  new RuntimeException("Item with id: "+itemId+" does not exists");
         }
 
-        throw  new RuntimeException("Item with id: "+itemId+" does not exists");
+        existingItem.get().setItemName(item.getItemName());
+        existingItem.get().setDescription(item.getDescription());
+        existingItem.get().setPrice(item.getPrice());
+        existingItem.get().setQuantityAvailable(item.getQuantityAvailable());
+
+        return itemRepository.save(existingItem.get());
     }
 
     private Optional<Item> getItem(Long itemId) {
@@ -69,13 +74,9 @@ public class ItemServiceImpl implements ItemService{
         return existingItem.get();
     }
 
-    private boolean itemExists(Item item){
-       Item existingItem = itemRepository.findByItemName(item.getItemName());
-
-       if(existingItem == null){
-           return  true;
-       }
-       return false;
+    private boolean itemExists(String itemName){
+       Item existingItem = itemRepository.findByItemName(itemName);
+        return existingItem != null;
     }
 
 }
